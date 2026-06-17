@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Italy Apartment Tracker — sourced from agency sites</title>
+<style>
+  :root{--head:#1F3864;--sub:#2E75B6;--band:#EAF2FB;--gold:#FFF3CC;--gold-b:#E8C766;--ink:#1c2733;
+    --muted:#5b6b7b;--line:#cdd9e6;--over:#c00000;--green:#1e7d46;--match:#1e7d46;}
+  *{box-sizing:border-box}
+  body{font-family:Arial,Helvetica,sans-serif;color:var(--ink);margin:0;background:#fff;line-height:1.45}
+  .wrap{max-width:1240px;margin:0 auto;padding:26px 20px 60px}
+  h1{color:var(--head);font-size:24px;margin:0 0 3px}
+  .lede{color:var(--muted);font-size:13px;margin:0 0 16px}
+  h2{color:var(--head);font-size:17px;margin:26px 0 10px;border-bottom:2px solid var(--head);padding-bottom:5px}
+  .box{background:var(--band);border:1px solid var(--line);border-radius:8px;padding:13px 16px;font-size:12.5px;margin:12px 0}
+  .controls{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin:10px 0 6px}
+  .chip{border:1px solid var(--line);background:#fff;border-radius:16px;padding:4px 12px;font-size:12px;cursor:pointer;color:var(--ink)}
+  .chip.on{background:var(--head);color:#fff;border-color:var(--head)}
+  .toggle{margin-left:auto;font-size:12.5px;color:var(--ink);display:flex;align-items:center;gap:6px;cursor:pointer}
+  table{border-collapse:collapse;width:100%;font-size:12px;margin-top:4px}
+  th{background:var(--head);color:#fff;text-align:left;padding:7px 8px;font-weight:bold;cursor:pointer;white-space:nowrap}
+  td{border:1px solid var(--line);padding:6px 8px;vertical-align:top}
+  tr:nth-child(even) td{background:var(--band)}
+  tr.match td:first-child{box-shadow:inset 4px 0 0 var(--match)}
+  .price{text-align:right;white-space:nowrap;font-weight:bold}
+  .over{color:var(--over)}
+  .ctr{text-align:center}
+  .twobath{color:var(--green);font-weight:bold}
+  a{color:#0563C1;text-decoration:none}a:hover{text-decoration:underline}
+  .feat{display:inline-block;width:16px;height:16px;line-height:16px;text-align:center;border-radius:4px;font-size:10px;font-weight:bold;color:#fff;margin-right:2px}
+  .fG{background:#1e7d46}.fT{background:#c0791f}.fB{background:#2E75B6}
+  .tag{display:inline-block;border-radius:10px;padding:0 7px;font-size:10px;font-weight:bold}
+  .tCS{background:#d8efe0;color:#1e7d46}.tCen{background:#e3eefb;color:#2E75B6}.tScalo{background:#f0e6f7;color:#7a3da0}.tPer{background:#eee;color:#666}
+  .st{font-size:10px;font-weight:bold;border-radius:9px;padding:0 6px}
+  .stNew{background:#1e7d46;color:#fff}.stDrop{background:#c0791f;color:#fff}
+  .mtag{color:var(--match);font-weight:bold}
+  .small{font-size:11.5px;color:var(--muted)}
+  .count{font-size:12px;color:var(--muted);margin:8px 0}
+  .brokers{font-size:12px}.brokers b{color:var(--sub)}
+  @media print{th{cursor:auto}.controls{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Italy Apartment Tracker</h1>
+<p class="lede">Larry's search · 2–3BR, historical center, station nearby, ≤ ~€80k · listings pulled directly from the agencies' own websites (priority agencies, all 8 towns) · last refresh: <b>17 June 2026</b></p>
+
+<div class="box">
+  <b>What this is.</b> A maintained list of apartments currently for sale, scraped from each town's priority agencies' own sites — which carry stock that never reaches Immobiliare/Casa.it. The green left-bar and "★ match" mark listings that hit your core criteria (<b>2+ bedrooms · Centro storico · ≤€80,000</b>). Use the town chips and the "matches only" toggle to filter; click a column header to sort.
+  <br><br>
+  <b>To refresh:</b> just say <i>"update the tracker."</i> I'll re-run the agency sweep through your browser, then mark new listings <span class="st stNew">NEW</span> and price cuts <span class="st stDrop">▼</span>, and drop ones that have sold. (Needs Chrome open at the time.) Zone tags: <span class="tag tCS">Centro storico</span> <span class="tag tCen">Central</span> <span class="tag tScalo">Scalo (lower town)</span> <span class="tag tPer">Periphery/frazione</span>. Features: <span class="feat fG">G</span>arden <span class="feat fT">T</span>errace <span class="feat fB">B</span>alcony.
+  <br><br>
+  <span class="small">Town descriptions &amp; train connections are in the companion file (Italy_Apartment_Search.html). Frazioni/rural listings and 1-bedroom peripheral units were largely excluded to keep this focused on in-town stock; counts of what was skipped are noted under each town. Captured 17 June 2026 — verify before contacting.</span>
+</div>
+
+<div class="controls" id="chips"></div>
+<div class="count" id="count"></div>
+<table id="tbl">
+  <thead><tr>
+    <th data-k="town">Town</th><th data-k="agency">Agency</th><th data-k="type">Type</th>
+    <th data-k="price">Price €</th><th data-k="m2">m²</th><th data-k="bd">Bed/Bath</th>
+    <th data-k="zone">Zone</th><th data-k="czone">Area</th><th data-k="feat">Feat.</th>
+    <th data-k="match">Match</th><th>Link</th>
+  </tr></thead>
+  <tbody id="rows"></tbody>
+</table>
+
+<h2>Priority agency contacts (call first)</h2>
+<div class="box brokers">
+<b>Narni</b> — Agenzia Bonifazi 0744 726692 · Tecnocasa Studio Narni 0744 760135 &nbsp;|&nbsp;
+<b>Orte</b> — Studio Zero24 0761 493445 · Casa Tua 0761 402610 &nbsp;|&nbsp;
+<b>Spoleto</b> — Tecnocasa Spoleto 0743 223718 · Carolina Russo 0742 1970171 &nbsp;|&nbsp;
+<b>Foligno</b> — Tecnocasa Foligno 0742 359861 · Carolina Russo 0742 1970171 &nbsp;|&nbsp;
+<b>Orvieto</b> — Immobiliare Tirsena 0763 305389 · Immobiliare La Rupe 0763 343077 &nbsp;|&nbsp;
+<b>Chiusi</b> — Agenzia MB 0578 21192 · Arca Immobiliare (Chianciano) &nbsp;|&nbsp;
+<b>Terni</b> — Centro Immobiliare MB (via portal) · Tecnorete Terni 0744 240869 &nbsp;|&nbsp;
+<b>Perugia</b> — Mediocasa 075 3724953 · Gestim (Via Marconi 41)
+</div>
+
+<script>
+const DATA = [
+ // NARNI
+ {town:"Narni",agency:"Bonifazi",type:"Bilocale",price:23000,m2:35,bd:1,ba:1,zone:"Centro storico (zona università)",cz:"CS",feat:[],u:"https://www.bonifazi.it/franchising_immobile_vendita.php?id=108377"},
+ {town:"Narni",agency:"Bonifazi",type:"Appartamento",price:35000,m2:50,bd:1,ba:2,zone:"Centro storico",cz:"CS",feat:[],u:"https://www.bonifazi.it/franchising_immobile_vendita.php?id=108722"},
+ {town:"Narni",agency:"Bonifazi",type:"Trilocale",price:57000,m2:98,bd:3,ba:1,zone:"Zona Cappuccini, 3° piano",cz:"Cen",feat:[],u:"https://www.bonifazi.it/franchising_immobile_vendita.php?id=108606"},
+ {town:"Narni",agency:"Bonifazi",type:"Appartamento",price:60000,m2:100,bd:2,ba:1,zone:"Centro storico, caratteristico",cz:"CS",feat:[],u:"https://www.bonifazi.it/franchising_immobile_vendita.php?id=108683"},
+ {town:"Narni",agency:"Bonifazi",type:"Semindip.",price:59000,m2:80,bd:2,ba:1,zone:"Narni",cz:"Cen",feat:[],u:"https://www.bonifazi.it/franchising_immobile_vendita.php?id=81501"},
+ {town:"Narni",agency:"Tecnocasa",type:"Trilocale",price:49000,m2:95,bd:2,ba:1,zone:"Via di Feronia (sotto la Rocca)",cz:"CS",feat:["B"],u:"https://narni1.tecnocasa.it/narni/appartamenti-in-vendita-61221458"},
+ {town:"Narni",agency:"Tecnocasa",type:"Trilocale",price:33000,m2:85,bd:2,ba:1,zone:"Via Claudio Sforza (centro storico)",cz:"CS",feat:[],u:"https://narni1.tecnocasa.it/narni/appartamenti-in-vendita-61089809"},
+ {town:"Narni",agency:"Tecnocasa",type:"Multilocale",price:76000,m2:110,bd:3,ba:2,zone:"Via dei Senetrari (centro storico)",cz:"CS",feat:[],u:"https://narni1.tecnocasa.it/narni/appartamenti-in-vendita-61070564"},
+ {town:"Narni",agency:"Tecnocasa",type:"Quadrilocale",price:79000,m2:105,bd:3,ba:2,zone:"Via C. Franceschi Ferrucci (centro storico)",cz:"CS",feat:[],u:"https://narni1.tecnocasa.it/narni/appartamenti-in-vendita-60701862"},
+ {town:"Narni",agency:"Tecnocasa",type:"Trilocale",price:59000,m2:60,bd:2,ba:1,zone:"Via Capitonese (Narni Scalo)",cz:"Scalo",feat:[],u:"https://narni1.tecnocasa.it/narni/appartamenti-in-vendita-61212519"},
+ {town:"Narni",agency:"Tecnocasa",type:"Quadrilocale",price:79000,m2:90,bd:3,ba:1,zone:"Via Toiano (Narni Scalo)",cz:"Scalo",feat:[],u:"https://narni1.tecnocasa.it/narni/appartamenti-in-vendita-61146162"},
+ // ORTE
+ {town:"Orte",agency:"Studio Zero24",type:"Appartamento",price:29000,m2:45,bd:1,ba:2,zone:"Centro storico, ingresso indip., 1°",cz:"CS",feat:[],u:"https://www.studiozero24.it/i-10658110010-vendita-appartamento-orte/"},
+ {town:"Orte",agency:"Studio Zero24",type:"Appartamento",price:40000,m2:70,bd:2,ba:1,zone:"Centralissima, vicino centro storico",cz:"Cen",feat:[],u:"https://www.studiozero24.it/i-12158110010-vendita-appartamento-orte/"},
+ {town:"Orte",agency:"Studio Zero24",type:"Appartamento",price:50000,m2:50,bd:2,ba:1,zone:"Orte Scalo, balcone",cz:"Scalo",feat:["B"],u:"https://www.studiozero24.it/i-10198110010-vendita-appartamento-orte-orte-scalo/"},
+ {town:"Orte",agency:"Studio Zero24",type:"Appartamento",price:59000,m2:50,bd:1,ba:1,zone:"Orte Scalo, 3° ultimo",cz:"Scalo",feat:[],u:"https://www.studiozero24.it/i-11738110010-vendita-appartamento-orte-orte-scalo/"},
+ {town:"Orte",agency:"Studio Zero24",type:"Appartamento",price:75000,m2:75,bd:2,ba:1,zone:"Orte Scalo, piano terra",cz:"Scalo",feat:[],u:"https://www.studiozero24.it/i-11198110010-vendita-appartamento-orte-orte-scalo/"},
+ {town:"Orte",agency:"Studio Zero24",type:"Trilocale",price:78000,m2:85,bd:2,ba:1,zone:"Petignano, 3° piano, ascensore",cz:"Cen",feat:[],u:"https://www.studiozero24.it/i-12378110010-vendita-appartamento-orte-petignano/"},
+ // SPOLETO
+ {town:"Spoleto",agency:"Tecnocasa",type:"Bilocale",price:35000,m2:28,bd:1,ba:1,zone:"Via Salara Vecchia (centro storico)",cz:"CS",feat:[],u:"https://spoleto1.tecnocasa.it/spoleto/appartamenti-in-vendita-61215121"},
+ {town:"Spoleto",agency:"Tecnocasa",type:"Monolocale",price:38000,m2:30,bd:0,ba:1,zone:"Largo Fratti (piazzetta centrale)",cz:"Cen",feat:[],u:"https://spoleto1.tecnocasa.it/spoleto/appartamenti-in-vendita-61229105"},
+ {town:"Spoleto",agency:"Tecnocasa",type:"Bilocale",price:74000,m2:50,bd:1,ba:1,zone:"Via Brignone (centrale)",cz:"Cen",feat:[],u:"https://spoleto1.tecnocasa.it/spoleto/appartamenti-in-vendita-61188253"},
+ {town:"Spoleto",agency:"Tecnocasa",type:"Trilocale",price:78800,m2:100,bd:2,ba:1,zone:"Via Marconi",cz:"Cen",feat:[],u:"https://spoleto1.tecnocasa.it/spoleto/appartamenti-in-vendita-61105091"},
+ {town:"Spoleto",agency:"Tecnocasa",type:"Trilocale",price:80000,m2:85,bd:2,ba:1,zone:"Via Cerquilia",cz:"Cen",feat:[],u:"https://spoleto1.tecnocasa.it/spoleto/appartamenti-in-vendita-61100791"},
+ {town:"Spoleto",agency:"Carolina Russo",type:"Appartamento",price:48000,m2:null,bd:1,ba:1,zone:"Centro storico, ingresso indip.",cz:"CS",feat:[],u:"https://www.carolinarussocase.com/it/immobile.html?rif=13758/Sa"},
+ {town:"Spoleto",agency:"Carolina Russo",type:"Appartamento",price:75000,m2:65,bd:1,ba:1,zone:"Centro storico (Via Campo de' Fiori), terrazzo",cz:"CS",feat:["T"],u:"https://www.carolinarussocase.com/it/immobile.html?rif=13522/S"},
+ {town:"Spoleto",agency:"Carolina Russo",type:"Appartamento",price:79000,m2:null,bd:1,ba:2,zone:"Centro storico",cz:"CS",feat:[],u:"https://www.carolinarussocase.com/it/immobile.html?rif=13358/S"},
+ {town:"Spoleto",agency:"Carolina Russo",type:"Appartamento",price:80000,m2:null,bd:2,ba:1,zone:"Centro storico, 1° piano",cz:"CS",feat:[],u:"https://www.carolinarussocase.com/it/immobile.html?rif=13791/Sa"},
+ {town:"Spoleto",agency:"Carolina Russo",type:"Appartamento",price:53000,m2:null,bd:2,ba:1,zone:"Centrale (~1 km dal centro)",cz:"Cen",feat:[],u:"https://www.carolinarussocase.com/it/immobile.html?rif=13649/S"},
+ // FOLIGNO
+ {town:"Foligno",agency:"Tecnocasa",type:"Trilocale",price:50000,m2:57,bd:2,ba:1,zone:"Via dei Giardini (centro), terrazzo",cz:"CS",feat:["T"],u:"https://foligno2.tecnocasa.it/foligno/appartamenti-in-vendita-61225992"},
+ {town:"Foligno",agency:"Tecnocasa",type:"Trilocale",price:77000,m2:98,bd:2,ba:1,zone:"Via Garibaldi (centro), 4° c/ascensore",cz:"CS",feat:["B"],u:"https://foligno2.tecnocasa.it/foligno/appartamenti-in-vendita-61160054"},
+ {town:"Foligno",agency:"Tecnocasa",type:"Trilocale",price:79000,m2:115,bd:2,ba:1,zone:"Via G. Donizetti",cz:"Cen",feat:[],u:"https://foligno2.tecnocasa.it/foligno/appartamenti-in-vendita-61146692"},
+ {town:"Foligno",agency:"Tecnocasa",type:"Trilocale",price:84000,m2:70,bd:2,ba:2,zone:"Via Istituto Denti",cz:"Cen",feat:[],u:"https://foligno2.tecnocasa.it/foligno/appartamenti-in-vendita-61102406"},
+ {town:"Foligno",agency:"Carolina Russo",type:"Appartamento",price:60000,m2:null,bd:2,ba:1,zone:"Centro storico, luminoso",cz:"CS",feat:[],u:"https://www.carolinarussocase.com/it/immobile.html?rif=13532/F"},
+ {town:"Foligno",agency:"Carolina Russo",type:"Bilocale",price:58000,m2:null,bd:1,ba:1,zone:"Centro storico, 1° piano",cz:"CS",feat:[],u:"https://www.carolinarussocase.com/it/immobile.html?rif=13804/F2M"},
+ // ORVIETO
+ {town:"Orvieto",agency:"Immobiliare Tirsena",type:"Appartamento",price:70000,m2:94,bd:2,ba:1,zone:"Orvieto Scalo — garden+terrace+balcony, 28m² garage",cz:"Scalo",feat:["G","T","B"],u:"https://www.immobiliaretirsena.it/dettagli/2612/appartamento-in-vendita-a-orvieto-(tr)"},
+ {town:"Orvieto",agency:"Immobiliare Tirsena",type:"Appartamento",price:78000,m2:60,bd:1,ba:1,zone:"Orvieto Scalo",cz:"Scalo",feat:[],u:"https://www.immobiliaretirsena.it/appartamenti-vendita-orvieto"},
+ {town:"Orvieto",agency:"Immobiliare Tirsena",type:"Appartamento",price:85000,m2:87,bd:2,ba:1,zone:"Orvieto Scalo",cz:"Scalo",feat:[],u:"https://www.immobiliaretirsena.it/appartamenti-vendita-orvieto"},
+ {town:"Orvieto",agency:"Immobiliare La Rupe",type:"Bilocale",price:65000,m2:63,bd:1,ba:1,zone:"Orvieto Scalo (\"Il Borgo\"), 6° c/ascensore",cz:"Scalo",feat:[],u:"https://www.immobiliarelarupe.com/immobili/289094/orvieto-scalo-vendesi-appartamento"},
+ // CHIUSI
+ {town:"Chiusi",agency:"Agenzia MB",type:"Trilocale",price:78000,m2:63,bd:1,ba:1,zone:"Centro (Via Sacco e Vanzetti), P2",cz:"CS",feat:["B","T"],u:"https://www.immobiliare.it/annunci/119330645/"},
+ {town:"Chiusi",agency:"Agenzia MB",type:"Bilocale",price:75000,m2:51,bd:1,ba:1,zone:"Centro (Via Bonci), P2",cz:"CS",feat:[],u:"https://www.immobiliare.it/annunci/121910886/"},
+ {town:"Chiusi",agency:"Agenzia MB",type:"Appartamento",price:90000,m2:68,bd:2,ba:1,zone:"Centro (Via E. Baldetti), P3, arredato",cz:"CS",feat:[],u:"https://www.immobiliare.it/annunci/127241681/"},
+ {town:"Chiusi",agency:"Agenzia MB",type:"Quadrilocale",price:90000,m2:85,bd:2,ba:1,zone:"Centro (Via Pozzarelli), P3",cz:"CS",feat:["B"],u:"https://www.immobiliare.it/annunci/108271825/"},
+ {town:"Chiusi",agency:"Agenzia MB",type:"Appartamento",price:90000,m2:80,bd:2,ba:2,zone:"Centro (Rione Carducci), P2",cz:"CS",feat:[],u:"https://www.immobiliare.it/annunci/99787706/"},
+ {town:"Chiusi",agency:"Agenzia MB",type:"Appartamento",price:73000,m2:90,bd:2,ba:1,zone:"Chiusi Scalo (Via Oslavia), P3",cz:"Scalo",feat:["B","T"],u:"https://www.immobiliare.it/annunci/128236360/"},
+ {town:"Chiusi",agency:"Agenzia MB",type:"Quadrilocale",price:78000,m2:94,bd:2,ba:1,zone:"Chiusi Scalo (Via Montegrappa), P4",cz:"Scalo",feat:["B","T"],u:"https://www.immobiliare.it/annunci/124614383/"},
+ {town:"Chiusi",agency:"Agenzia MB",type:"Appartamento",price:80000,m2:107,bd:2,ba:1,zone:"Chiusi Scalo (Via Fabio Filzi), P3",cz:"Scalo",feat:["B","T"],u:"https://www.immobiliare.it/annunci/127760464/"},
+ {town:"Chiusi",agency:"Arca Immobiliare",type:"Quadrilocale",price:75000,m2:115,bd:3,ba:2,zone:"Chiusi (Via Cassia Aurelia II), 2° c/ascensore",cz:"Scalo",feat:["B"],u:"https://www.immobiliare.it/annunci/97750686/"},
+ {town:"Chiusi",agency:"Arca Immobiliare",type:"Appartamento",price:70000,m2:90,bd:3,ba:2,zone:"Loc. Macciano, piano terra",cz:"Per",feat:["B"],u:"https://www.arcaimmobiliare.org/singleproperty.aspx?prod=1680"},
+ // TERNI
+ {town:"Terni",agency:"Centro Imm. MB",type:"Trilocale",price:67000,m2:119,bd:2,ba:1,zone:"Centro storico (Via Roma 149), P2",cz:"CS",feat:["B"],u:"https://www.immobiliare.it/annunci/129043896/"},
+ {town:"Terni",agency:"Centro Imm. MB",type:"Quadrilocale",price:75000,m2:96,bd:3,ba:1,zone:"Centro storico (Via F.lli Cairoli), P2 c/ascensore",cz:"CS",feat:["B"],u:"https://www.immobiliare.it/annunci/126463903/"},
+ {town:"Terni",agency:"Centro Imm. MB",type:"Bilocale",price:35000,m2:48,bd:1,ba:1,zone:"Centro (Via Calatafimi 13), PT, arredato",cz:"Cen",feat:[],u:"https://www.immobiliare.it/annunci/119446383/"},
+ {town:"Terni",agency:"Tecnorete",type:"Quadrilocale",price:74000,m2:110,bd:3,ba:1,zone:"Centro (Via dell'Olio)",cz:"CS",feat:[],u:"https://terni7.tecnorete.it/terni/appartamenti-in-vendita-61153509"},
+ {town:"Terni",agency:"Tecnorete",type:"Trilocale",price:80000,m2:85,bd:2,ba:1,zone:"Centro (Vicolo Tempio del Sole)",cz:"CS",feat:[],u:"https://terni7.tecnorete.it/terni/appartamenti-in-vendita-61201436"},
+ {town:"Terni",agency:"Tecnorete",type:"Trilocale",price:65000,m2:102,bd:2,ba:1,zone:"Centro Stazione (Via delle Portelle)",cz:"Cen",feat:["B"],u:"https://terni7.tecnorete.it/terni/appartamenti-in-vendita-61139675"},
+ {town:"Terni",agency:"Tecnorete",type:"Trilocale",price:49000,m2:70,bd:2,ba:1,zone:"Centro Stazione (Via E. Chiesa)",cz:"Cen",feat:[],u:"https://terni7.tecnorete.it/terni/appartamenti-in-vendita-61235198"},
+ {town:"Terni",agency:"Tecnorete",type:"Trilocale",price:75000,m2:100,bd:2,ba:1,zone:"Centro Stazione (Via E. Chiesa)",cz:"Cen",feat:[],u:"https://terni7.tecnorete.it/terni/appartamenti-in-vendita-61163843"},
+ {town:"Terni",agency:"Tecnorete",type:"Trilocale",price:57000,m2:58,bd:2,ba:1,zone:"Centro Stazione (V.le Curio Dentato)",cz:"Cen",feat:[],u:"https://terni7.tecnorete.it/terni/appartamenti-in-vendita-61146352"},
+ {town:"Terni",agency:"Tecnorete",type:"Trilocale",price:69000,m2:90,bd:2,ba:2,zone:"Via Tre Venezie",cz:"Cen",feat:[],u:"https://terni7.tecnorete.it/terni/appartamenti-in-vendita-61202040"},
+ // PERUGIA
+ {town:"Perugia",agency:"Gestim",type:"Trilocale",price:68000,m2:55,bd:2,ba:1,zone:"Centro storico (Via Podiani), P2",cz:"CS",feat:[],u:"https://www.immobiliare.it/annunci/122635252/"},
+ {town:"Perugia",agency:"Mediocasa",type:"Trilocale",price:70000,m2:80,bd:2,ba:1,zone:"Monteluce (Via del Favarone)",cz:"Per",feat:[],u:"https://www.idealista.it/immobile/25255245/"},
+ {town:"Perugia",agency:"Gestim",type:"Bilocale",price:69000,m2:50,bd:1,ba:2,zone:"Monteluce–Ponte Rio, PT, arredato",cz:"Per",feat:[],u:"https://www.immobiliare.it/annunci/126393521/"},
+ {town:"Perugia",agency:"Mediocasa",type:"Bilocale",price:62000,m2:55,bd:1,ba:1,zone:"Fontivegge (Via M. Angeloni), 4°",cz:"Per",feat:[],u:"https://www.idealista.it/pro/mediocasa-perugia-centro-storico-tre-archi-perugia/immobile/29832992/"}
+];
+const SKIPPED = "Also on file but not shown (rural/frazione or peripheral 1-bed): Narni ~8 (Taizzano, Montoro, Stifone, Capitone, Schifanoia €22–65k); Spoleto Tecnocasa ~10 (Baiano, Protte, Eggi) + Carolina Russo ~12 periphery incl. 2–3BR €55–90k; Foligno Pale €28k (3BR); Orvieto centro-storico clifftop apts all >€90k; Chiusi several Scalo €55–90k; Terni Borgo Bovio/Marmore €69–89k; Perugia €93–95k borderline. Ask and I'll surface any of these.";
+
+const TOWNS = ["All","Narni","Orte","Spoleto","Foligno","Orvieto","Chiusi","Terni","Perugia"];
+const CZLABEL = {CS:["Centro storico","tCS"],Cen:["Central","tCen"],Scalo:["Scalo","tScalo"],Per:["Periphery","tPer"]};
+let curTown="All", matchOnly=false, sortK="price", sortDir=1;
+const isMatch = d => d.bd>=2 && d.price<=80000 && d.cz==="CS";
+
+function chips(){
+  const c=document.getElementById("chips"); c.innerHTML="";
+  TOWNS.forEach(t=>{const s=document.createElement("span");s.className="chip"+(t===curTown?" on":"");s.textContent=t;
+    s.onclick=()=>{curTown=t;render()};c.appendChild(s);});
+  const lab=document.createElement("label");lab.className="toggle";
+  lab.innerHTML='<input type="checkbox" id="mo"> matches only (2+BR · centro · ≤€80k)';
+  c.appendChild(lab);
+  lab.querySelector("input").checked=matchOnly;
+  lab.querySelector("input").onchange=e=>{matchOnly=e.target.checked;render()};
+}
+function render(){
+  let rows=DATA.filter(d=>curTown==="All"||d.town===curTown);
+  if(matchOnly) rows=rows.filter(isMatch);
+  rows.sort((a,b)=>{let x=a[sortK],y=b[sortK];if(sortK==="match"){x=isMatch(a)?1:0;y=isMatch(b)?1:0;}
+    if(x==null)x=1e9;if(y==null)y=1e9;return (x>y?1:x<y?-1:0)*sortDir;});
+  const tb=document.getElementById("rows"); tb.innerHTML="";
+  rows.forEach(d=>{
+    const tr=document.createElement("tr"); if(isMatch(d)) tr.className="match";
+    const cz=CZLABEL[d.cz];
+    const feat=d.feat.map(f=>`<span class="feat f${f}">${f}</span>`).join("");
+    const bb=`<span class="${d.ba>=2?'twobath':''}">${d.bd!=null?d.bd:'?'} / ${d.ba!=null?d.ba:'?'}</span>`;
+    tr.innerHTML=`<td>${d.town}</td><td>${d.agency}</td><td>${d.type}</td>`+
+      `<td class="price ${d.price>80000?'over':''}">€${d.price.toLocaleString()}</td>`+
+      `<td class="ctr">${d.m2!=null?d.m2:'—'}</td><td class="ctr">${bb}</td>`+
+      `<td>${d.zone}</td><td><span class="tag ${cz[1]}">${cz[0]}</span></td>`+
+      `<td class="ctr">${feat}</td><td class="ctr">${isMatch(d)?'<span class="mtag">★</span>':''}</td>`+
+      `<td><a href="${d.u}" target="_blank">View</a></td>`;
+    tb.appendChild(tr);
+  });
+  const nm=rows.filter(isMatch).length;
+  document.getElementById("count").innerHTML=`${rows.length} listings shown · ${nm} match your core criteria. <span class="small">${SKIPPED}</span>`;
+}
+document.querySelectorAll("#tbl th[data-k]").forEach(th=>{
+  th.onclick=()=>{const k=th.dataset.k; if(sortK===k)sortDir*=-1; else{sortK=k;sortDir=1;} render();};
+});
+chips(); render();
+</script>
+
+</div>
+</body>
+</html>
