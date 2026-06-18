@@ -53,7 +53,7 @@
 <div class="wrap">
 
 <h1>Italy Apartment Tracker</h1>
-<p class="lede">Larry's search · 2–3BR, historical center, station nearby, ≤ ~€80k · 19 towns · listings pulled directly from the agencies' own websites · last refresh: <b>18 June 2026</b></p>
+<p class="lede">Larry's search · 2–3BR, historical center, station nearby, ≤ ~€80k · 24 towns · listings pulled directly from the agencies' own websites · last refresh: <b>18 June 2026</b></p>
 
 <div class="box">
   <b>What this is.</b> A maintained list of apartments for sale, scraped from each town's priority agencies' own sites. The green left-bar and "★ match" mark listings that hit your core criteria (<b>2+ bedrooms · Centro storico · ≤€80,000</b>). Filter with the town chips and the "matches only" toggle; click a column header to sort. Town descriptions &amp; train connections are now <b>below the table</b>.
@@ -96,6 +96,11 @@
   <div class="card"><h3>Massa Martana <small>Umbria · ~3,800</small></h3><p>Small walled medieval town SE of Todi — surprisingly deep, cheap centro storico 2–3BR supply.</p><div class="row"><b class="fcu">⚠ Ex-FCU:</b> same reopening caveat (~2026–2027); served meanwhile by Todi/regional bus.</div><div class="row"><b>Station→center:</b> small FCU halt; car/bus for now.</div></div>
   <div class="card"><h3>Umbertide <small>Umbria · ~16,000</small></h3><p>Tiber-valley town with the Rocca, Alta Valle del Tevere.</p><div class="row"><b class="fcu">⚠ Ex-FCU (north):</b> runs but works-suspended (buses) ~14 Jun–6 Sep 2026; electrified service from 2026.</div><div class="row"><b>Station→center:</b> in town (flat). <i>Note: essentially no sub-€90k apartments — market is villas/casali.</i></div></div>
   <div class="card"><h3>Città di Castello <small>Umbria · ~38,000</small></h3><p>Renaissance art town in the upper Tiber valley.</p><div class="row"><b class="fcu">⚠ Ex-FCU (north):</b> works suspension (buses) ~14 Jun–6 Sep 2026; service otherwise.</div><div class="row"><b>Station→center:</b> in town (flat). <i>Note: very little sub-€90k stock; centro apartments start ~€129k.</i></div></div>
+  <div class="card"><h3>Tivoli <small>Lazio (Roma) · ~56,000</small></h3><p>Famous for Villa d'Este &amp; Hadrian's Villa (UNESCO); historic center on a hillside above the Aniene falls. The rare walk-to-train town — but pricier &amp; touristy.</p><div class="row"><b>Rome (Tiburtina):</b> ~40–60 min, hourly (FL2 regional)</div><div class="row"><b>Station→center:</b> ~0.5 km, walkable. Much stock is in Villa Adriana / Tivoli Terme / Bivio San Polo (outlying); true centro thinner.</div></div>
+  <div class="card"><h3>Rieti <small>Lazio capital · ~47,000</small></h3><p>"Centre of Italy"; pleasant historic center on the Velino, very affordable with abundant cheap stock.</p><div class="row"><b>Rome:</b> direct ~1h47, ~11/day (secondary Terni line — slower/less frequent than the FL lines)</div><div class="row"><b>Station→center:</b> near the city. <i>Lots of cheap flats but mostly modern-city — verify which are truly centro storico (Terminillo/Pian de' Valli = mountain frazioni).</i></div></div>
+  <div class="card"><h3>Anagni <small>Lazio (Frosinone) · ~21,000</small></h3><p>"City of Popes" — a strikingly intact medieval hill town (Boniface VIII, the cathedral) in Ciociaria. Exceptionally cheap, very deep centro storico stock.</p><div class="row"><b>Rome (Termini):</b> ~50 min, hourly, ~€5 (FL6 regional)</div><div class="row"><b>Station→center:</b> ⚠ Anagni-Fiuggi is ~6–8 km below the town — shuttle bus up (bigger gap than usual).</div></div>
+  <div class="card"><h3>Ferentino <small>Lazio (Frosinone) · ~20,000</small></h3><p>Ancient pre-Roman hill town with cyclopean walls and a hilltop duomo. Very cheap; many large centro apartments.</p><div class="row"><b>Rome:</b> ~55 min, hourly (FL6; station Ferentino-Supino in the valley)</div><div class="row"><b>Station→center:</b> station below the hill — bus/car up.</div></div>
+  <div class="card"><h3>Frosinone <small>Lazio · Ciociaria capital · ~44,000</small></h3><p>Provincial capital: historic upper town on a hill, larger modern lower town. Cheap centro stock.</p><div class="row"><b>Rome (Termini):</b> ~45–60 min, hourly (FL6). <span class="fcu">Note: FL6 has a works closure ~2–31 Aug 2026 (after your trip).</span></div><div class="row"><b>Station→center:</b> station in the lower town; upper historic town by bus/escalators.</div></div>
 </div>
 
 <h2>Priority agency contacts (call first)</h2>
@@ -118,7 +123,12 @@
 <b>Deruta</b> — IMMOBILIARELG 075 9978769 &nbsp;|&nbsp;
 <b>Massa Martana</b> — LA Immobiliare / Gabetti Todi (via Todi agencies) &nbsp;|&nbsp;
 <b>Umbertide</b> — IPN Castello 075 9978271 &nbsp;|&nbsp;
-<b>Città di Castello</b> — Eurocasa 075 8550397
+<b>Città di Castello</b> — Eurocasa 075 8550397 &nbsp;|&nbsp;
+<b>Tivoli</b> — Real Home · Tecnorete Tivoli Uno (via portal) &nbsp;|&nbsp;
+<b>Rieti</b> — AZ Servizi Immobiliari · Tecnocasa Gruppo Sabina &nbsp;|&nbsp;
+<b>Anagni</b> — CIS GoldenHouse · Shark House &nbsp;|&nbsp;
+<b>Ferentino</b> — Gruppo Pennacchia · Centro Casa &nbsp;|&nbsp;
+<b>Frosinone</b> — Tecnocasa GR · Casaitalia
 </div>
 
 <script>
@@ -230,11 +240,40 @@ const DATA = [
  {town:"Poggio Mirteto",agency:"Mondo Sabina",type:"Trilocale",price:89000,m2:90,bd:2,ba:2,zone:"Centro (Via P. Nenni)",cz:"CS",feat:["T"],u:"https://www.immobiliare.it/annunci/118940539/"},
  {town:"Poggio Mirteto",agency:"Case in Sabina",type:"Appartamento",price:72000,m2:107,bd:3,ba:1,zone:"Castel San Pietro (frazione, Piazza Grande)",cz:"Per",feat:["T"],u:"https://www.immobiliare.it/annunci/125294179/"},
  {town:"Umbertide",agency:"IPN Castello",type:"—",price:0,m2:null,bd:null,ba:null,zone:"No apartment ≤€90k found (market = villas/casali; cheapest apt ~€230k)",cz:"Cen",feat:[],u:"https://www.immobiliare.it/agenzie-immobiliari/88682/ipn-castello/"},
- {town:"Città di Castello",agency:"Eurocasa",type:"Bilocale",price:38000,m2:55,bd:2,ba:1,zone:"Trestina (frazione)",cz:"Per",feat:[],u:"https://www.immobiliare.it/annunci/120299012/"}
+ {town:"Città di Castello",agency:"Eurocasa",type:"Bilocale",price:38000,m2:55,bd:2,ba:1,zone:"Trestina (frazione)",cz:"Per",feat:[],u:"https://www.immobiliare.it/annunci/120299012/"},
+ {town:"Tivoli",agency:"EuroKasa2000",type:"Bilocale",price:50000,m2:50,bd:2,ba:1,zone:"Centro Storico, arredato",cz:"CS",feat:[],u:"https://www.immobiliare.it/annunci/129571070/"},
+ {town:"Tivoli",agency:"Casa 2.0",type:"Trilocale",price:60000,m2:66,bd:3,ba:2,zone:"Centro Storico",cz:"CS",feat:[],u:"https://www.immobiliare.it/annunci/129018272/"},
+ {town:"Tivoli",agency:"Tecnorete Tivoli Uno",type:"Bilocale",price:73000,m2:49,bd:2,ba:1,zone:"Centro Storico, arredato",cz:"CS",feat:["B"],u:"https://www.immobiliare.it/annunci/129262260/"},
+ {town:"Tivoli",agency:"Real Home",type:"Bilocale",price:75000,m2:45,bd:2,ba:1,zone:"Centro Storico",cz:"CS",feat:[],u:"https://www.immobiliare.it/annunci/112391469/"},
+ {town:"Tivoli",agency:"Tecnorete Tivoli Uno",type:"Trilocale",price:78000,m2:65,bd:3,ba:2,zone:"Centro Storico, parz. arredato",cz:"CS",feat:[],u:"https://www.immobiliare.it/annunci/130031486/"},
+ {town:"Tivoli",agency:"Domus Point",type:"Trilocale",price:78000,m2:50,bd:3,ba:3,zone:"Centro Storico",cz:"CS",feat:[],u:"https://www.immobiliare.it/annunci/126548289/"},
+ {town:"Tivoli",agency:"AGL Tivoli",type:"Quadrilocale",price:60450,m2:108,bd:4,ba:2,zone:"Tivoli Terme (lower town)",cz:"Per",feat:["B"],u:"https://www.immobiliare.it/annunci/128872190/"},
+ {town:"Rieti",agency:"Tecnocasa Gruppo Sabina",type:"Bilocale",price:33000,m2:50,bd:2,ba:1,zone:"via Porta Romana (centro)",cz:"CS",feat:[],u:"https://www.immobiliare.it/annunci/111537659/"},
+ {town:"Rieti",agency:"Immobiliare Malfatti",type:"Trilocale",price:69000,m2:70,bd:3,ba:1,zone:"via Garibaldi (centro)",cz:"CS",feat:[],u:"https://www.immobiliare.it/annunci/125254129/"},
+ {town:"Rieti",agency:"Tecnocasa Sabina Cavour",type:"Quadrilocale",price:47000,m2:95,bd:4,ba:1,zone:"via della Chiesa",cz:"Cen",feat:["B"],u:"https://www.immobiliare.it/annunci/121680726/"},
+ {town:"Rieti",agency:"Professionecasa Rieti",type:"Quadrilocale",price:65000,m2:70,bd:4,ba:1,zone:"via Ternana",cz:"Cen",feat:["B","T"],u:"https://www.immobiliare.it/annunci/119141117/"},
+ {town:"Rieti",agency:"AZ Servizi Immobiliari",type:"Trilocale",price:60000,m2:90,bd:3,ba:1,zone:"via dell'Anello",cz:"Cen",feat:["B","T"],u:"https://www.immobiliare.it/annunci/122283918/"},
+ {town:"Rieti",agency:"Giustiniana Immobiliare",type:"Trilocale",price:25000,m2:75,bd:3,ba:1,zone:"Rieti",cz:"Cen",feat:[],u:"https://www.immobiliare.it/annunci/119935332/"},
+ {town:"Anagni",agency:"CIS GoldenHouse",type:"Trilocale",price:25000,m2:99,bd:3,ba:1,zone:"Centro storico",cz:"CS",feat:["B","T"],u:"https://www.immobiliare.it/annunci/129134542/"},
+ {town:"Anagni",agency:"CIS GoldenHouse",type:"Trilocale",price:35000,m2:60,bd:3,ba:1,zone:"Centro storico",cz:"CS",feat:["B","T"],u:"https://www.immobiliare.it/annunci/126544417/"},
+ {town:"Anagni",agency:"CIS GoldenHouse",type:"Quadrilocale",price:55000,m2:106,bd:4,ba:1,zone:"Centro storico",cz:"CS",feat:["B"],u:"https://www.immobiliare.it/annunci/124420775/"},
+ {town:"Anagni",agency:"Shark House",type:"Trilocale",price:60000,m2:70,bd:3,ba:1,zone:"Centro storico",cz:"CS",feat:["B","T"],u:"https://www.immobiliare.it/annunci/129418846/"},
+ {town:"Anagni",agency:"Shark House",type:"Trilocale",price:79000,m2:80,bd:3,ba:2,zone:"Centro storico",cz:"CS",feat:["B"],u:"https://www.immobiliare.it/annunci/125078237/"},
+ {town:"Anagni",agency:"Con Pro Casa",type:"Quadrilocale",price:79000,m2:100,bd:4,ba:2,zone:"Centro storico",cz:"CS",feat:["B"],u:"https://www.immobiliare.it/annunci/124373499/"},
+ {town:"Ferentino",agency:"Studio Immobiliare",type:"Trilocale",price:15000,m2:70,bd:3,ba:1,zone:"Centro storico",cz:"CS",feat:["B"],u:"https://www.immobiliare.it/annunci/130020120/"},
+ {town:"Ferentino",agency:"Gruppo Pennacchia",type:"Trilocale",price:35000,m2:65,bd:3,ba:2,zone:"Centro storico",cz:"CS",feat:["B"],u:"https://www.immobiliare.it/annunci/122245794/"},
+ {town:"Ferentino",agency:"Centro Casa",type:"Quadrilocale",price:45000,m2:100,bd:4,ba:2,zone:"Centro storico",cz:"CS",feat:[],u:"https://www.immobiliare.it/annunci/126581945/"},
+ {town:"Ferentino",agency:"Gruppo Pennacchia",type:"Quadrilocale",price:55000,m2:120,bd:4,ba:1,zone:"Centro storico",cz:"CS",feat:["B"],u:"https://www.immobiliare.it/annunci/118627215/"},
+ {town:"Ferentino",agency:"Centro Casa",type:"Quadrilocale",price:72000,m2:80,bd:4,ba:1,zone:"Centro storico",cz:"CS",feat:[],u:"https://www.immobiliare.it/annunci/123432237/"},
+ {town:"Frosinone",agency:"Con Pro Casa",type:"Bilocale",price:34000,m2:42,bd:2,ba:1,zone:"Centro (upper town)",cz:"CS",feat:["B"],u:"https://www.immobiliare.it/annunci/121390432/"},
+ {town:"Frosinone",agency:"Tecnocasa GR",type:"Trilocale",price:36000,m2:58,bd:3,ba:1,zone:"Centro (upper town)",cz:"CS",feat:[],u:"https://www.immobiliare.it/annunci/128453422/"},
+ {town:"Frosinone",agency:"Casaitalia",type:"Quadrilocale",price:45000,m2:95,bd:4,ba:1,zone:"Centro (upper town)",cz:"CS",feat:["B"],u:"https://www.immobiliare.it/annunci/128267892/"},
+ {town:"Frosinone",agency:"(privato)",type:"Appartamento",price:48000,m2:70,bd:3,ba:1,zone:"Centro (upper town)",cz:"CS",feat:[],u:"https://www.immobiliare.it/annunci/118042321/"},
+ {town:"Frosinone",agency:"Tecnocasa GR",type:"Quadrilocale",price:50000,m2:110,bd:4,ba:1,zone:"Centro (upper town)",cz:"CS",feat:["B","T"],u:"https://www.immobiliare.it/annunci/126491777/"}
 ];
-const SKIPPED = "Not all in-range listings are shown — frazioni/rural and many peripheral 1-bed units were trimmed to keep this focused. Spello & Trevi are thin (mostly valley frazioni); Castiglione del Lago has ~21 in-budget units but all in lake frazioni (Macchie/San Fatucchio/Porto), none in the walled centro; Umbertide & Città di Castello have almost no sub-€90k apartments (centro starts ~€129k); Poggio Mirteto and Massa Martana have more centro stock than shown. Ask and I'll surface any town's full list.";
+const SKIPPED = "Not all in-range listings are shown — frazioni/rural and many peripheral 1-bed units were trimmed to keep this focused. Spello & Trevi are thin (mostly valley frazioni); Castiglione del Lago has ~21 in-budget units but all in lake frazioni (Macchie/San Fatucchio/Porto), none in the walled centro; Umbertide & Città di Castello have almost no sub-€90k apartments (centro starts ~€129k); Poggio Mirteto and Massa Martana have more centro stock than shown. Tivoli, Rieti and the Ciociaria towns (Anagni, Ferentino, Frosinone) have far MORE in-budget stock than the curated samples shown — Anagni & Ferentino especially have cheap centro 2–3BR from €15–80k (many more than listed). Rieti zone tags are approximate (verify centro storico). Ask and I'll surface any town's full list.";
 
-const TOWNS = ["All","Narni","Orte","Spoleto","Foligno","Orvieto","Chiusi","Terni","Perugia","Spello","Trevi","Castiglione del Lago","Città della Pieve","Castiglion Fiorentino","Poggio Mirteto","Todi","Deruta","Massa Martana","Umbertide","Città di Castello"];
+const TOWNS = ["All","Narni","Orte","Spoleto","Foligno","Orvieto","Chiusi","Terni","Perugia","Spello","Trevi","Castiglione del Lago","Città della Pieve","Castiglion Fiorentino","Poggio Mirteto","Todi","Deruta","Massa Martana","Umbertide","Città di Castello","Tivoli","Rieti","Anagni","Ferentino","Frosinone"];
 const CZLABEL = {CS:["Centro storico","tCS"],Cen:["Central","tCen"],Scalo:["Scalo","tScalo"],Per:["Periphery","tPer"]};
 let curTown="All", matchOnly=false, sortK="price", sortDir=1;
 const isMatch = d => d.bd>=2 && d.price<=80000 && d.price>0 && d.cz==="CS";
