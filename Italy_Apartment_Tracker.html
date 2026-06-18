@@ -55,7 +55,7 @@
 <div class="wrap">
 
 <h1>Italy Apartment Tracker</h1>
-<p class="lede">Larry's search · 2–3BR, historical center, station nearby, ≤ ~€80k · 24 towns · listings pulled directly from the agencies' own websites · last refresh: <b>18 June 2026</b> · zones verified per-listing</p>
+<p class="lede">Larry's search · 2–3BR, historical center, station nearby, ≤ ~€80k · 25 towns · listings pulled directly from the agencies' own websites · last refresh: <b>18 June 2026</b> · zones verified per-listing</p>
 
 <div class="box">
   <b>What this is.</b> A maintained list of apartments for sale, scraped from each town's priority agencies' own sites. The green left-bar marks listings meeting your core criteria (<b>2+ bedrooms · Centro storico · ≤€80,000</b>), rated by stars: <b>★</b> = meets the basics · <b>★★</b> = also has a 2nd bathroom <i>or</i> real outdoor space · <b>★★★</b> = has both. Outdoor space means a <b>terrace or garden</b> (a balcony alone doesn't count). Filter with the town chips and the "matches only" toggle; click a column header to sort (ties break by price). Town descriptions, train connections &amp; <b>seismic notes</b> are <b>below the table</b>.
@@ -103,6 +103,7 @@
   <div class="card"><h3>Anagni <small>Lazio (Frosinone) · ~21,000</small></h3><p>"City of Popes" — a strikingly intact medieval hill town (Boniface VIII, the cathedral) in Ciociaria. Exceptionally cheap, very deep centro storico stock.</p><div class="row"><b>Rome (Termini):</b> ~50 min, hourly, ~€5 (FL6 regional)</div><div class="row"><b>Station→center:</b> ⚠ Anagni-Fiuggi is ~6–8 km below the town — shuttle bus up (bigger gap than usual).</div><div class="seis s2">⚠ Seismic zone 2 (moderate-high) — have the structure assessed.</div></div>
   <div class="card"><h3>Ferentino <small>Lazio (Frosinone) · ~20,000</small></h3><p>Ancient pre-Roman hill town with cyclopean walls and a hilltop duomo. Very cheap; many large centro apartments.</p><div class="row"><b>Rome:</b> ~55 min, hourly (FL6; station Ferentino-Supino in the valley)</div><div class="row"><b>Station→center:</b> station below the hill — bus/car up.</div><div class="seis s2">⚠ Seismic zone 2 (moderate-high) — have the structure assessed.</div></div>
   <div class="card"><h3>Frosinone <small>Lazio · Ciociaria capital · ~44,000</small></h3><p>Provincial capital: historic upper town on a hill, larger modern lower town. Cheap stock, but the audit showed it's mostly in the <b>lower modern city</b> — the hilltop old town has very little.</p><div class="row"><b>Rome (Termini):</b> ~45–60 min, hourly (FL6). <span class="fcu">Note: FL6 has a works closure ~2–31 Aug 2026 (after your trip).</span></div><div class="row"><b>Station→center:</b> station in the lower town; upper historic town by bus/escalators.</div><div class="seis s2">⚠ Seismic zone 2 (moderate-high) — have the structure assessed.</div></div>
+  <div class="card"><h3>Amelia <small>Umbria (Terni) · ~11,000</small></h3><p>One of Italy's oldest towns — monumental pre-Roman polygonal walls, the bronze Germanicus, an atmospheric upper old town. Very cheap, the deepest centro-storico stock of the set.</p><div class="row"><b class="fcu">⚠ No own station</b> — nearest is Narni–Amelia (~10–12 km away, in Narni Scalo) on the Rome–Ancona line, or Orte. Linked only by a sparse Busitalia bus (line E631, ~7 weekday runs, minimal weekends) — effectively <b>car-dependent</b>.</div><div class="row"><b>Note:</b> much of the cheap "Centro" stock is the Via delle Rimembranze axis just below the walls (tagged Central); true inside-the-walls units are tagged Centro storico.</div><div class="seis s2">⚠ Seismic zone 2 (moderate-high) — have the structure assessed.</div></div>
 </div>
 
 <h2>Priority agency contacts (call first)</h2>
@@ -130,7 +131,8 @@
 <b>Rieti</b> — AZ Servizi Immobiliari · Tecnocasa Gruppo Sabina &nbsp;|&nbsp;
 <b>Anagni</b> — CIS GoldenHouse · Shark House &nbsp;|&nbsp;
 <b>Ferentino</b> — Gruppo Pennacchia · Centro Casa &nbsp;|&nbsp;
-<b>Frosinone</b> — Tecnocasa GR · Casaitalia
+<b>Frosinone</b> — Tecnocasa GR · Casaitalia &nbsp;|&nbsp;
+<b>Amelia</b> — B.Amelia/Bonifazi (Via Rimembranze 22) · Tecnocasa Amelia (Via Roma 13)
 </div>
 
 <script>
@@ -271,11 +273,21 @@ const DATA = [
  {town:"Frosinone",agency:"Tecnocasa GR",type:"Trilocale",price:36000,m2:58,bd:3,ba:1,zone:"Piazza Diamanti (lower city)",cz:"Cen",feat:[],u:"https://www.immobiliare.it/annunci/128453422/"},
  {town:"Frosinone",agency:"Casaitalia",type:"Quadrilocale",price:45000,m2:95,bd:4,ba:1,zone:"Via Firenze (lower city)",cz:"Cen",feat:["B"],u:"https://www.immobiliare.it/annunci/128267892/"},
  {town:"Frosinone",agency:"(privato)",type:"Appartamento",price:48000,m2:70,bd:3,ba:1,zone:"Via Minghetti (lower city)",cz:"Cen",feat:[],u:"https://www.immobiliare.it/annunci/118042321/"},
- {town:"Frosinone",agency:"Tecnocasa GR",type:"Quadrilocale",price:50000,m2:110,bd:4,ba:1,zone:"Via Pozzillo (lower city)",cz:"Cen",feat:["B","T"],u:"https://www.immobiliare.it/annunci/126491777/"}
+ {town:"Frosinone",agency:"Tecnocasa GR",type:"Quadrilocale",price:50000,m2:110,bd:4,ba:1,zone:"Via Pozzillo (lower city)",cz:"Cen",feat:["B","T"],u:"https://www.immobiliare.it/annunci/126491777/"},
+ {town:"Amelia",agency:"B.Amelia (Bonifazi)",type:"Trilocale",price:27000,m2:null,bd:2,ba:null,zone:"Centro storico (da ristrutturare), 1° piano",cz:"CS",feat:[],u:"https://www.immobiliare.it/annunci/115625233/"},
+ {town:"Amelia",agency:"Tecnocasa Amelia",type:"Trilocale",price:29000,m2:null,bd:2,ba:null,zone:"Vico del Sole 21 (centro storico)",cz:"CS",feat:[],u:"https://www.immobiliare.it/annunci/126148373/"},
+ {town:"Amelia",agency:"Gabetti Orte",type:"Trilocale",price:31000,m2:106,bd:2,ba:null,zone:"Centro storico",cz:"CS",feat:[],u:"https://www.immobiliare.it/annunci/129924226/"},
+ {town:"Amelia",agency:"Chiavi In Mano",type:"Quadrilocale",price:45000,m2:null,bd:3,ba:null,zone:"Via dell'Ospedale (centro storico)",cz:"CS",feat:[],u:"https://www.immobiliare.it/annunci/124712395/"},
+ {town:"Amelia",agency:"Imm. Amerina",type:"Quadrilocale",price:48000,m2:null,bd:3,ba:null,zone:"Piazza Matteotti (centro storico)",cz:"CS",feat:["B"],u:"https://www.immobiliare.it/annunci/113893973/"},
+ {town:"Amelia",agency:"Quadraccia",type:"Quadrilocale",price:60000,m2:120,bd:2,ba:null,zone:"Parte alta del centro storico (Via Rimembranze), camino",cz:"CS",feat:["T"],u:"https://www.immobiliare.it/annunci/116497437/"},
+ {town:"Amelia",agency:"Tecnocasa Amelia",type:"Trilocale",price:64000,m2:null,bd:2,ba:null,zone:"Via San Crispino 18 (centro storico), cut from €69k",cz:"CS",feat:[],u:"https://www.immobiliare.it/annunci/128647336/"},
+ {town:"Amelia",agency:"Immobiliare A.D.",type:"Trilocale",price:70000,m2:null,bd:2,ba:null,zone:"Via Pomponia (centro storico)",cz:"CS",feat:[],u:"https://www.immobiliare.it/annunci/107066283/"},
+ {town:"Amelia",agency:"Fiaschini",type:"Trilocale",price:75000,m2:null,bd:2,ba:null,zone:"Piazza Marconi (centro storico)",cz:"CS",feat:[],u:"https://www.immobiliare.it/annunci/127792270/"},
+ {town:"Amelia",agency:"B.Amelia (Bonifazi)",type:"Trilocale",price:55000,m2:null,bd:2,ba:null,zone:"Via delle Rimembranze (central axis, below the walls)",cz:"Cen",feat:[],u:"https://www.immobiliare.it/annunci/127359735/"}
 ];
 const SKIPPED = "Not all in-range listings are shown — frazioni/rural and many peripheral 1-bed units were trimmed to keep this focused. Spello & Trevi are thin (mostly valley frazioni); Castiglione del Lago has ~21 in-budget units but all in lake frazioni (Macchie/San Fatucchio/Porto), none in the walled centro; Umbertide & Città di Castello have almost no sub-€90k apartments (centro starts ~€129k); Poggio Mirteto and Massa Martana have more centro stock than shown. Tivoli, Rieti and the Ciociaria towns (Anagni, Ferentino, Frosinone) have far MORE in-budget stock than the curated samples shown — Anagni & Ferentino especially have cheap centro 2–3BR from €15–80k (many more than listed). Rieti zone tags are approximate (verify centro storico). Ask and I'll surface any town's full list.";
 
-const TOWNS = ["All","Narni","Orte","Spoleto","Foligno","Orvieto","Chiusi","Terni","Perugia","Spello","Trevi","Castiglione del Lago","Città della Pieve","Castiglion Fiorentino","Poggio Mirteto","Todi","Deruta","Massa Martana","Umbertide","Città di Castello","Tivoli","Rieti","Anagni","Ferentino","Frosinone"];
+const TOWNS = ["All","Narni","Orte","Spoleto","Foligno","Orvieto","Chiusi","Terni","Perugia","Spello","Trevi","Castiglione del Lago","Città della Pieve","Castiglion Fiorentino","Poggio Mirteto","Todi","Deruta","Massa Martana","Umbertide","Città di Castello","Tivoli","Rieti","Anagni","Ferentino","Frosinone","Amelia"];
 const CZLABEL = {CS:["Centro storico","tCS"],Cen:["Central","tCen"],Scalo:["Scalo","tScalo"],Per:["Periphery","tPer"]};
 let curTown="All", matchOnly=false, sortK="price", sortDir=1;
 function stars(d){
