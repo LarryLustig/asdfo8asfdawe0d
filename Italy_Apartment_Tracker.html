@@ -68,6 +68,7 @@
 </div>
 
 <div class="controls" id="chips"></div>
+<div class="controls" id="provchips"></div>
 <div class="count" id="count"></div>
 <table id="tbl">
   <thead><tr>
@@ -308,7 +309,11 @@ const SKIPPED = "Not all in-range listings are shown — frazioni/rural and many
 
 const TOWNS = ["All","Narni","Orte","Spoleto","Foligno","Orvieto","Chiusi","Terni","Perugia","Spello","Trevi","Castiglione del Lago","Città della Pieve","Castiglion Fiorentino","Poggio Mirteto","Todi","Deruta","Massa Martana","Umbertide","Città di Castello","Tivoli","Rieti","Anagni","Ferentino","Frosinone","Amelia"];
 const CZLABEL = {CS:["Centro storico","tCS"],Cen:["Central","tCen"],Scalo:["Scalo","tScalo"],Per:["Periphery","tPer"]};
-let curTown="All", matchOnly=false, sortK="price", sortDir=1;
+let curTown="All", matchOnly=false, sortK="price", sortDir=1, curProv="", curSide="";
+const PROV={"Narni":["TR","N"],"Orte":["VT","N"],"Spoleto":["PG","N"],"Foligno":["PG","N"],"Orvieto":["TR","N"],"Chiusi":["SI","N"],"Terni":["TR","N"],"Perugia":["PG","N"],"Spello":["PG","N"],"Trevi":["PG","N"],"Castiglione del Lago":["PG","N"],"Città della Pieve":["PG","N"],"Castiglion Fiorentino":["AR","N"],"Poggio Mirteto":["RI","N"],"Todi":["PG","N"],"Deruta":["PG","N"],"Massa Martana":["PG","N"],"Umbertide":["PG","N"],"Città di Castello":["PG","N"],"Tivoli":["RM","N"],"Rieti":["RI","N"],"Anagni":["FR","S"],"Ferentino":["FR","S"],"Frosinone":["FR","S"],"Amelia":["TR","N"]};
+const PROVS=["PG","TR","VT","SI","AR","RI","RM","FR"];
+function provBadge(t){var p=PROV[t];return p?' <span class="prov p'+p[1]+'">'+p[0]+'</span>':'';}
+function refresh(){chips();render();}
 function stars(d){
   if(!(d.bd>=2 && d.price<=80000 && d.price>0 && d.cz==="CS")) return 0;
   let s=1;                                   // base: 2+BR, centro storico, ≤€80k
@@ -320,16 +325,34 @@ const isMatch = d => stars(d)>0;
 
 function chips(){
   const c=document.getElementById("chips"); c.innerHTML="";
-  TOWNS.forEach(t=>{const s=document.createElement("span");s.className="chip"+(t===curTown?" on":"");s.textContent=t;
-    s.onclick=()=>{curTown=t;render()};c.appendChild(s);});
+  TOWNS.forEach(t=>{const s=document.createElement("span");
+    s.className="chip"+((!curProv&&!curSide&&t===curTown)?" on":"");
+    s.innerHTML=(t==="All"?"All":t+provBadge(t));
+    s.onclick=()=>{curTown=t;curProv="";curSide="";refresh()};c.appendChild(s);});
   const lab=document.createElement("label");lab.className="toggle";
   lab.innerHTML='<input type="checkbox" id="mo"> matches only (2+BR · centro · ≤€80k)';
   c.appendChild(lab);
   lab.querySelector("input").checked=matchOnly;
   lab.querySelector("input").onchange=e=>{matchOnly=e.target.checked;render()};
+  const pc=document.getElementById("provchips"); pc.innerHTML="";
+  const lbl=document.createElement("span");lbl.className="small";lbl.style.marginRight="2px";lbl.textContent="By area:";pc.appendChild(lbl);
+  const all=document.createElement("span");
+  all.className="chip"+((!curProv&&!curSide&&curTown==="All")?" on":"");all.textContent="All";
+  all.onclick=()=>{curProv="";curSide="";curTown="All";refresh()};pc.appendChild(all);
+  PROVS.forEach(code=>{const s=document.createElement("span");s.className="chip"+(curProv===code?" on":"");
+    s.innerHTML='<span class="prov p'+(code==="FR"?"S":"N")+'">'+code+'</span>';
+    s.onclick=()=>{curProv=code;curSide="";curTown="All";refresh()};pc.appendChild(s);});
+  const rn=document.createElement("span");rn.className="chip"+(curSide==="N"?" on":"");rn.textContent="Rome North";
+  rn.onclick=()=>{curSide="N";curProv="";curTown="All";refresh()};pc.appendChild(rn);
+  const rs=document.createElement("span");rs.className="chip"+(curSide==="S"?" on":"");rs.textContent="Rome South";
+  rs.onclick=()=>{curSide="S";curProv="";curTown="All";refresh()};pc.appendChild(rs);
 }
 function render(){
-  let rows=DATA.filter(d=>curTown==="All"||d.town===curTown);
+  let rows=DATA.filter(function(d){
+    if(curProv) return PROV[d.town]&&PROV[d.town][0]===curProv;
+    if(curSide) return PROV[d.town]&&PROV[d.town][1]===curSide;
+    return curTown==="All"||d.town===curTown;
+  });
   if(matchOnly) rows=rows.filter(isMatch);
   rows.sort((a,b)=>{let x=a[sortK],y=b[sortK];if(sortK==="match"){x=stars(a);y=stars(b);}
     if(x==null)x=1e9;if(y==null)y=1e9;let c=(x>y?1:x<y?-1:0)*sortDir;return c!==0?c:(a.price-b.price);});
@@ -340,7 +363,7 @@ function render(){
     const feat=d.feat.map(f=>`<span class="feat f${f}">${f}</span>`).join("");
     const priceTxt = d.price>0 ? "€"+d.price.toLocaleString() : "—";
     const bb=`<span class="${d.ba>=2?'twobath':''}">${d.bd!=null?d.bd:'?'} / ${d.ba!=null?d.ba:'?'}</span>`;
-    tr.innerHTML=`<td>${d.town}</td><td>${d.agency}</td><td>${d.type}</td>`+
+    tr.innerHTML=`<td>${d.town}${provBadge(d.town)}</td><td>${d.agency}</td><td>${d.type}</td>`+
       `<td class="price ${d.price>80000?'over':''}">${priceTxt}</td>`+
       `<td class="ctr">${d.m2!=null?d.m2:'—'}</td><td class="ctr">${bb}</td>`+
       `<td>${d.zone}</td><td><span class="tag ${cz[1]}">${cz[0]}</span></td>`+
