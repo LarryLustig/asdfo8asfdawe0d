@@ -49,6 +49,8 @@
   .s1{color:#c0392b;font-weight:bold} .s2{color:#a8500a} .s3{color:#777}
   .prov{display:inline-block;font-size:9.5px;font-weight:bold;border-radius:4px;padding:1px 5px;vertical-align:middle;margin-left:4px}
   .pN{background:#e3eefb;color:#2E75B6} .pS{background:#fbe2da;color:#c0392b}
+  .cond{display:inline-block;font-size:9.5px;font-weight:bold;border-radius:4px;padding:1px 5px}
+  .cR{background:#fbe2da;color:#c0392b} .cG{background:#ececec;color:#555} .cT{background:#d8efe0;color:#1e7d46}
   @media print{th{cursor:auto}.controls{display:none}.cards{grid-template-columns:1fr 1fr}}
   @media(max-width:760px){.cards{grid-template-columns:1fr}}
 </style>
@@ -62,7 +64,7 @@
 <div class="box">
   <b>What this is.</b> A maintained list of apartments for sale, scraped from each town's priority agencies' own sites. The green left-bar marks listings meeting your core criteria (<b>2+ bedrooms · Centro storico · ≤€80,000</b>), rated by stars: <b>★</b> = meets the basics · <b>★★</b> = also has a 2nd bathroom <i>or</i> real outdoor space · <b>★★★</b> = has both. Outdoor space means a <b>terrace or garden</b> (a balcony alone doesn't count). Filter with the town chips and the "matches only" toggle; click a column header to sort (ties break by price). Town descriptions, train connections &amp; <b>seismic notes</b> are <b>below the table</b>.
   <br><br>
-  <b>To refresh:</b> say <i>"update the tracker"</i> — I'll re-run the agency sweep through your browser, mark new listings <b>NEW</b> / price cuts <b>▼</b>, and drop sold ones. (Needs Chrome open.) Zone tags: <span class="tag tCS">Centro storico</span> <span class="tag tCen">Central</span> <span class="tag tScalo">Scalo (lower town)</span> <span class="tag tPer">Periphery/frazione</span>. Features: <span class="feat fG">G</span>arden <span class="feat fT">T</span>errace <span class="feat fB">B</span>alcony.
+  <b>To refresh:</b> say <i>"update the tracker"</i> — I'll re-run the agency sweep through your browser, mark new listings <b>NEW</b> / price cuts <b>▼</b>, and drop sold ones. (Needs Chrome open.) Zone tags: <span class="tag tCS">Centro storico</span> <span class="tag tCen">Central</span> <span class="tag tScalo">Scalo (lower town)</span> <span class="tag tPer">Periphery/frazione</span>. Features: <span class="feat fG">G</span>arden <span class="feat fT">T</span>errace <span class="feat fB">B</span>alcony. Condition (where stated): <span class="cond cR">Reno</span> needs work · <span class="cond cG">Good</span> livable · <span class="cond cT">Turnkey</span> move-in.
   <br><br>
   <span class="small"><b class="fcu">⚠ Ex-FCU line (Todi, Deruta, Massa Martana, Umbertide, Città di Castello):</b> the Ferrovia Centrale Umbra is mid-reconstruction. The Terni–Perugia (south) section serving Todi/Deruta/Massa Martana is funded to reopen ~2026–2027; the Perugia–Città di Castello (north) section serving Umbertide/Città di Castello runs but has a works suspension (replacement buses) ~14 Jun–6 Sep 2026. Until reopening, reach these by bus/car or via a mainline town (Orte, Foligno, Perugia). Snapshot 18 Jun 2026 — verify before contacting.</span>
 </div>
@@ -74,7 +76,7 @@
   <thead><tr>
     <th data-k="town">Town</th><th data-k="agency">Agency</th><th data-k="type">Type</th>
     <th data-k="price">Price €</th><th data-k="m2">m²</th><th data-k="bd">Bed/Bath</th>
-    <th data-k="zone">Zone</th><th data-k="czone">Area</th><th data-k="feat">Feat.</th>
+    <th data-k="zone">Zone</th><th data-k="czone">Area</th><th data-k="cond">Cond.</th><th data-k="feat">Feat.</th>
     <th data-k="match">Match</th><th>Link</th>
   </tr></thead>
   <tbody id="rows"></tbody>
@@ -289,11 +291,11 @@ const DATA = [
  {town:"Amelia",agency:"Fiaschini",type:"Trilocale",price:75000,m2:70,bd:2,ba:2,zone:"Piazza Marconi (central, foot of old town), move-in ready",cz:"Cen",feat:[],u:"https://www.immobiliare.it/annunci/127792270/"},
  {town:"Amelia",agency:"B.Amelia (Bonifazi)",type:"Trilocale",price:55000,m2:82,bd:2,ba:1,zone:"Centro storico (desc.: cuore del borgo; \"Rimembranze 22\" is the agency office), 1940",cz:"CS",feat:[],u:"https://www.immobiliare.it/annunci/127359735/"},
  {town:"Amelia",agency:"Studio Zero24",type:"Palazzetto cielo-terra",price:50000,m2:117,bd:2,ba:1,zone:"Centro storico (cielo-terra, ~97 m² giardino), da ristrutturare",cz:"CS",feat:["G","T"],u:"https://www.studiozero24.it/i-3088111010-vendita-appartamento-amelia/"},
- {town:"Amelia",agency:"Studio Zero24",type:"Appartamento",price:59000,m2:70,bd:2,ba:2,zone:"Centro storico (viuzza da Porta Romana verso la torre dodecagonale)",cz:"CS",feat:["B"],u:"https://www.studiozero24.it/i-9238111010-vendita-appartamento-amelia/"},
+ {town:"Amelia",agency:"Studio Zero24",type:"Appartamento",price:59000,m2:70,bd:2,ba:2,zone:"Centro storico (viuzza da Porta Romana verso la torre dodecagonale), buono stato",cz:"CS",feat:["B"],u:"https://www.studiozero24.it/i-9238111010-vendita-appartamento-amelia/"},
  {town:"Amelia",agency:"Studio Zero24",type:"Palazzo nobiliare",price:60000,m2:100,bd:2,ba:1,zone:"Centro storico, a pochi passi dal Teatro Sociale",cz:"CS",feat:["G"],u:"https://www.studiozero24.it/i-3608111010-vendita-appartamento-amelia/"},
- {town:"Amelia",agency:"Studio Zero24",type:"Appartamento",price:70000,m2:78,bd:2,ba:1,zone:"Centro storico (vista tetti/torri campanarie), terrazzo",cz:"CS",feat:["T","G"],u:"https://www.studiozero24.it/i-6758111010-vendita-appartamento-amelia/"},
- {town:"Amelia",agency:"Studio Zero24",type:"Palazzo nobiliare",price:77000,m2:150,bd:2,ba:1,zone:"Centro storico, a pochi passi dal Teatro Sociale",cz:"CS",feat:["G"],u:"https://www.studiozero24.it/i-2898111010-vendita-appartamento-amelia/"},
- {town:"Amelia",agency:"Studio Zero24",type:"Palazzetto",price:79000,m2:162,bd:2,ba:2,zone:"Centro storico, posizione centralissima",cz:"CS",feat:[],u:"https://www.studiozero24.it/i-9218111010-vendita-appartamento-amelia/"},
+ {town:"Amelia",agency:"Studio Zero24",type:"Appartamento",price:70000,m2:78,bd:2,ba:1,zone:"Centro storico (vista tetti/torri campanarie), terrazzo, discreto",cz:"CS",feat:["T","G"],u:"https://www.studiozero24.it/i-6758111010-vendita-appartamento-amelia/"},
+ {town:"Amelia",agency:"Studio Zero24",type:"Palazzo nobiliare",price:77000,m2:150,bd:2,ba:1,zone:"Centro storico, a pochi passi dal Teatro Sociale, buono stato",cz:"CS",feat:["G"],u:"https://www.studiozero24.it/i-2898111010-vendita-appartamento-amelia/"},
+ {town:"Amelia",agency:"Studio Zero24",type:"Palazzetto",price:79000,m2:162,bd:2,ba:2,zone:"Centro storico, posizione centralissima, ottimo stato",cz:"CS",feat:[],u:"https://www.studiozero24.it/i-9218111010-vendita-appartamento-amelia/"},
  {town:"Tivoli",agency:"Tecnorete Tivoli Uno",type:"Trilocale",price:78000,m2:65,bd:2,ba:2,zone:"Centro storico (Piazza Domenico Tani, presso il belvedere); 2 units, one rented",cz:"CS",feat:[],u:"https://tivoli1.tecnorete.it/tivoli/appartamenti-in-vendita-61237425"},
  {town:"Rieti",agency:"Immobiliare Malfatti",type:"Trilocale",price:75000,m2:70,bd:2,ba:1,zone:"Porta Romana / Via Santa Cecilia (centro storico), da ristrutturare",cz:"CS",feat:[],u:"https://www.immobiliaremalfatti.it/Appartamento-in-vendita-roma-Rieti-T315.aspx"},
  {town:"Ferentino",agency:"Gruppo Pennacchia",type:"Appartamento",price:35000,m2:65,bd:2,ba:2,zone:"Via Mura Ciclopiche (centro storico, vista valle dei Lepini)",cz:"CS",feat:["B"],u:"https://www.pennacchiaimmobiliare.it/properties/ferentino-via-mura-ciclopee-2/"},
@@ -302,7 +304,7 @@ const DATA = [
  {town:"Narni",agency:"Studio Zero24",type:"Appartamento",price:33000,m2:55,bd:2,ba:1,zone:"Centro storico (esterno in pietra, vista sul borgo)",cz:"CS",feat:[],u:"https://www.studiozero24.it/i-10328795010-vendita-appartamento-narni-centro-storico/"},
  {town:"Narni",agency:"Studio Zero24",type:"Appartamento",price:35000,m2:55,bd:2,ba:null,zone:"Centro storico (zona centralissima), terrazzo 15 m², da ristrutturare",cz:"CS",feat:["T"],u:"https://www.studiozero24.it/i-8568795010-vendita-appartamento-narni-centro-storico/"},
  {town:"Narni",agency:"Studio Zero24",type:"Palazzetto cielo-terra",price:49000,m2:250,bd:4,ba:1,zone:"Centro storico (vicolo del Gelsomino, posizione dominante), da ristrutturare",cz:"CS",feat:["B","T"],u:"https://www.studiozero24.it/i-11788795010-vendita-appartamento-narni-centro-storico/"},
- {town:"Narni",agency:"Studio Zero24",type:"Appartamento",price:79000,m2:70,bd:2,ba:1,zone:"Centro storico, a pochi passi da Piazza dei Priori (balcone 10 m² + terrazzo 30 m²)",cz:"CS",feat:["T","B"],u:"https://www.studiozero24.it/i-8558795010-vendita-appartamento-narni-centro-storico/"},
+ {town:"Narni",agency:"Studio Zero24",type:"Appartamento",price:79000,m2:70,bd:2,ba:1,zone:"Centro storico, a pochi passi da Piazza dei Priori (balcone 10 m² + terrazzo 30 m²), buono stato",cz:"CS",feat:["T","B"],u:"https://www.studiozero24.it/i-8558795010-vendita-appartamento-narni-centro-storico/"},
  {town:"Chiusi",agency:"Bella Umbria",type:"Appartamento",price:79000,m2:100,bd:3,ba:2,zone:"Chiusi Scalo, a pochi metri dalla stazione",cz:"Scalo",feat:["T","G"],u:"https://www.bellaumbriaimmobiliare.com/it/article_details.php?item=2378"}
 ];
 const SKIPPED = "Not all in-range listings are shown — frazioni/rural and many peripheral 1-bed units were trimmed to keep this focused. Spello & Trevi are thin (mostly valley frazioni); Castiglione del Lago has ~21 in-budget units but all in lake frazioni (Macchie/San Fatucchio/Porto), none in the walled centro; Umbertide & Città di Castello have almost no sub-€90k apartments (centro starts ~€129k); Poggio Mirteto and Massa Martana have more centro stock than shown. Tivoli, Rieti and the Ciociaria towns (Anagni, Ferentino, Frosinone) have far MORE in-budget stock than the curated samples shown — Anagni & Ferentino especially have cheap centro 2–3BR from €15–80k (many more than listed). Rieti zone tags are approximate (verify centro storico). Ask and I'll surface any town's full list.";
@@ -322,6 +324,16 @@ function stars(d){
   return s;
 }
 const isMatch = d => stars(d)>0;
+const CONDLBL={R:["Reno","cR"],G:["Good","cG"],T:["Turnkey","cT"]};
+function cond(d){
+  var z=(d.zone||"").toLowerCase();
+  if(/da ristrutturare|to renovate|da ripulire|al grezzo|grezzo|al rustico|needs work|needs system|roof needs|fixer/.test(z)) return "R";
+  if(/ristrutturat|renovated|move-?in|turnkey|ottimo|excellent|recente costruz|nuova costruz|new build/.test(z)) return "T";
+  if(/buono stato|good state|good condition|good\b|habitable|abitabile|discreto|buono/.test(z)) return "G";
+  return "";
+}
+function condBadge(d){var c=cond(d);return c?'<span class="cond '+CONDLBL[c][1]+'">'+CONDLBL[c][0]+'</span>':'';}
+function condRank(d){return {T:3,G:2,R:1,"":0}[cond(d)];}
 
 function chips(){
   const c=document.getElementById("chips"); c.innerHTML="";
@@ -354,7 +366,7 @@ function render(){
     return curTown==="All"||d.town===curTown;
   });
   if(matchOnly) rows=rows.filter(isMatch);
-  rows.sort((a,b)=>{let x=a[sortK],y=b[sortK];if(sortK==="match"){x=stars(a);y=stars(b);}
+  rows.sort((a,b)=>{let x=a[sortK],y=b[sortK];if(sortK==="match"){x=stars(a);y=stars(b);}else if(sortK==="cond"){x=condRank(a);y=condRank(b);}
     if(x==null)x=1e9;if(y==null)y=1e9;let c=(x>y?1:x<y?-1:0)*sortDir;return c!==0?c:(a.price-b.price);});
   const tb=document.getElementById("rows"); tb.innerHTML="";
   rows.forEach(d=>{
@@ -367,6 +379,7 @@ function render(){
       `<td class="price ${d.price>80000?'over':''}">${priceTxt}</td>`+
       `<td class="ctr">${d.m2!=null?d.m2:'—'}</td><td class="ctr">${bb}</td>`+
       `<td>${d.zone}</td><td><span class="tag ${cz[1]}">${cz[0]}</span></td>`+
+      `<td class="ctr">${condBadge(d)}</td>`+
       `<td class="ctr">${feat}</td><td class="ctr"><span class="mtag">${'★'.repeat(stars(d))}</span></td>`+
       `<td><a href="${d.u}" target="_blank">View</a></td>`;
     tb.appendChild(tr);
