@@ -47,6 +47,8 @@
   .fcu{color:#a8500a;font-weight:bold}
   .seis{font-size:11px;margin-top:5px;padding-top:4px;border-top:1px dotted var(--line)}
   .s1{color:#c0392b;font-weight:bold} .s2{color:#a8500a} .s3{color:#777}
+  .prov{display:inline-block;font-size:9.5px;font-weight:bold;border-radius:4px;padding:1px 5px;vertical-align:middle;margin-left:4px}
+  .pN{background:#e3eefb;color:#2E75B6} .pS{background:#fbe2da;color:#c0392b}
   @media print{th{cursor:auto}.controls{display:none}.cards{grid-template-columns:1fr 1fr}}
   @media(max-width:760px){.cards{grid-template-columns:1fr}}
 </style>
@@ -78,6 +80,7 @@
 </table>
 
 <h2>Town profiles &amp; train connections</h2>
+<p class="small" style="margin:-2px 0 8px">Badge = province code · <span class="prov pS">FR</span> = south of Rome (Ciociaria) · <span class="prov pN">XX</span> = north of / around Rome.</p>
 <div class="cards">
   <div class="card"><h3>Narni <small>Umbria · ~19,000</small></h3><p>Hilltop medieval town on a ridge above the Nera gorge; well-preserved old core, Narni Sotterranea. The one you already like.</p><div class="row"><b>Rome:</b> 47 min–1h20 direct · <b>Terni:</b> ~10 min · <b>Florence:</b> ~2h30 (change Orte/Terni)</div><div class="row"><b>Station→center:</b> Narni Scalo ~2–3 km below; "Narni Link" shuttle 10–15 min or taxi.</div><div class="seis s3">Seismic zone 3 (lower) — central Italy, so not zero.</div></div>
   <div class="card"><h3>Orte <small>Lazio · ~9,000</small></h3><p>Small Etruscan hill town above the Tiber; cheapest market, best rail links.</p><div class="row"><b>Rome:</b> 33–42 min direct (~27/day) · <b>Florence:</b> ~1h30–2h · major junction</div><div class="row"><b>Station→center:</b> Orte Scalo ~2.5–3 km below; bus/taxi up.</div><div class="seis s2">⚠ Seismic zone 2 (moderate-high) — have the structure assessed.</div></div>
@@ -352,6 +355,30 @@ document.querySelectorAll("#tbl th[data-k]").forEach(th=>{
   th.onclick=()=>{const k=th.dataset.k; if(sortK===k)sortDir*=-1; else{sortK=k;sortDir=1;} render();};
 });
 chips(); render();
+</script>
+<script>
+(function(){
+  const PROV={
+    "Narni":["TR","N"],"Orte":["VT","N"],"Spoleto":["PG","N"],"Foligno":["PG","N"],
+    "Orvieto":["TR","N"],"Chiusi":["SI","N"],"Terni":["TR","N"],"Perugia":["PG","N"],
+    "Spello":["PG","N"],"Trevi":["PG","N"],"Castiglione del Lago":["PG","N"],
+    "Città della Pieve":["PG","N"],"Castiglion Fiorentino":["AR","N"],
+    "Poggio Mirteto":["RI","N"],"Todi":["PG","N"],"Deruta":["PG","N"],
+    "Massa Martana":["PG","N"],"Umbertide":["PG","N"],"Città di Castello":["PG","N"],
+    "Tivoli":["RM","N"],"Rieti":["RI","N"],"Anagni":["FR","S"],"Ferentino":["FR","S"],
+    "Frosinone":["FR","S"],"Amelia":["TR","N"]
+  };
+  document.querySelectorAll(".cards .card h3").forEach(function(h){
+    var small=h.querySelector("small");
+    var name=(small? h.textContent.replace(small.textContent,"") : h.textContent).trim();
+    var p=PROV[name];
+    if(!p) return;
+    var b=document.createElement("span");
+    b.className="prov p"+p[1];
+    b.textContent=p[0];
+    if(small){h.insertBefore(b,small);} else {h.appendChild(b);}
+  });
+})();
 </script>
 
 </div>
